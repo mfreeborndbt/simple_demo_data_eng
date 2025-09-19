@@ -1,3 +1,17 @@
+models:
+  - name: locations
+    access: public
+    description: Store locations data mart, containing information about each Jaffle Shop location including tax rates and opening details. One row per location.
+    columns:
+      - name: location_id
+        description: The unique identifier for each store location.
+      - name: location_name
+        description: The name of the store location.
+      - name: tax_rate
+        description: The sales tax rate applied at this location (as a decimal).
+      - name: opened_date
+        description: The date when this location first opened for business.
+
 semantic_models:
   - name: locations
     description: |

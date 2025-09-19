@@ -1,15 +1,33 @@
 models:
   - name: order_items
+    access: public
+    description: Order items data mart, containing detailed information about each individual item within orders. One row per order item.
     columns:
       - name: order_item_id
+        description: The unique identifier for each order item.
         data_tests:
           - not_null
           - unique
       - name: order_id
+        description: The foreign key identifier for the order that contains this item.
         data_tests:
           - relationships:
               to: ref('orders')
               field: order_id
+      - name: product_id
+        description: The foreign key identifier for the product (SKU) of this order item.
+      - name: ordered_at
+        description: The timestamp when this item's order was placed.
+      - name: product_name
+        description: The name of the product for this order item.
+      - name: product_price
+        description: The price of the product for this order item in USD.
+      - name: is_food_item
+        description: Boolean flag indicating if this order item is a food product.
+      - name: is_drink_item
+        description: Boolean flag indicating if this order item is a beverage product.
+      - name: supply_cost
+        description: The total supply cost required to fulfill this order item in USD.
 
 unit_tests:
   - name: test_supply_costs_sum_correctly
