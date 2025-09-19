@@ -25,13 +25,13 @@ vars:
   "dbt_date:time_zone": "America/Los_Angeles"
 
 seeds:
-  jaffle_shop:
+  data_eng_project:
     +schema: raw
     jaffle-data:
       +enabled: true
 
 models:
-  jaffle_shop:
+  data_eng_project:
     staging:
       +materialized: view
     marts:
