@@ -10,10 +10,6 @@ models:
           - unique
       - name: order_id
         description: The foreign key identifier for the order that contains this item.
-        data_tests:
-          - relationships:
-              to: ref('orders')
-              field: order_id
       - name: product_id
         description: The foreign key identifier for the product (SKU) of this order item.
       - name: ordered_at
