@@ -4,6 +4,9 @@ sources:
   - name: ecom
     schema: raw
     description: E-commerce data for the Jaffle Shop
+    freshness:
+      warn_after: {count: 1, period: year}
+      error_after: {count: 2, period: year}
     tables:
       - name: raw_customers
         description: One record per person who has purchased one or more items

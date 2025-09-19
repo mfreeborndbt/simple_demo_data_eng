@@ -1,0 +1,10 @@
+groups:
+  - name: data_eng
+    owner:
+      email: data-eng@jaffleshop.com
+    description: Data Engineering team responsible for core data marts and infrastructure
+    config:
+      meta:
+        data_owner: Data Engineering team
+        team: Data Engineering
+        purpose: Core business data marts for cross-functional analytics
