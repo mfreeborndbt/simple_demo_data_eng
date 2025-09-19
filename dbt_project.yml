@@ -1,6 +1,6 @@
 config-version: 2
 
-name: "jaffle_shop"
+name: "data_eng_project"
 version: "3.0.0"
 require-dbt-version: ">=1.5.0"
 
