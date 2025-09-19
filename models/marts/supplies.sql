@@ -1,3 +1,7 @@
+{{ config(
+    access='public'
+) }}
+
 with
 
 supplies as (
