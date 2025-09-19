@@ -90,11 +90,13 @@ You're now ready to start developing with dbt Cloud! Choose a path below (either
 
 There are a few ways to load the data for the project:
 
-- **Using the sample data in the repo**. Seeds are static data files in CSV format that dbt will upload, usually for reference models, like US zip codes mapped to country regions for example, but in this case the feature is hacked to do some data ingestion. This is not what seeds are meant to be used for (dbt is not a data loading tool), but it's useful for this project to give you some data to get going with quickly. Run the command below and when it's done either delete the `seeds/jaffle-data` folder, remove `jaffle-data` config from the `dbt_project.yml`, or ideally, both.
+- **Using the sample data in the repo (Default)**. This project uses a seeds-as-sources pattern where CSV seed files are loaded into a `raw` schema and then referenced as sources in staging models. The seeds are now enabled by default and will automatically load into the `raw` schema when you run:
 
 ```bash
-dbt seed --full-refresh --vars '{"load_source_data": true}'
+dbt seed --full-refresh
 ```
+
+The staging models reference these raw tables via source definitions, creating a clean separation between raw data and transformed models.
 
 - **Load the data via S3**. If you'd prefer a larger dataset (6 years instead of 1), and are working via the dbt Cloud IDE and your platform's web interface, you can also copy the data from a public S3 bucket to your warehouse into a schema called `raw` in your `jaffle_shop` database. [This is discussed here](#-load-the-data-from-s3).
 
@@ -243,7 +245,7 @@ To generate 6 years of data:
 jafgen 6
 rm -rf seeds/jaffle-data
 mv jaffle-data seeds
-dbt seed --full-refresh --vars '{"load_source_data": true}'
+dbt seed --full-refresh
 ```
 
 **OR**
@@ -253,7 +255,7 @@ task gen YEARS=6
 task seed
 ```
 
-6. Remove the `jaffle-data` folder, then uninstall the temporary dbt Core installation. Again, this was to allow you to seed the large data files, you don't need it for the rest of the project which will use the dbt Cloud CLI. You can then delete your `profiles.yml` file and the configuration in your `dbt_project.yml` file. You should also delete the `jaffle-data` path from the `seeds:` config in your `dbt_project.yml`.
+6. Remove the `jaffle-data` folder, then uninstall the temporary dbt Core installation. Again, this was to allow you to seed the large data files, you don't need it for the rest of the project which will use the dbt Cloud CLI. You can then delete your `profiles.yml` file and the configuration in your `dbt_project.yml` file.
 
 ```bash
 rm -rf seeds/jaffle-data
